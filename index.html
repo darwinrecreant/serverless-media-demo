@@ -25,7 +25,7 @@ My dynamic content:
   // Assumes the hash string is made up of only one level json array of strings or numbers
   function parseHash(s) {
     try {
-      return JSON.parse(s);
+      return JSON.parse(decodeURIComponent(s));
     } catch(e) {
       return [];
     }
