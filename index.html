@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+My dynamic content:
+<ul id="content">
+</ul>
+
+<script>
+(($, $$) => {
+  let settings = parseHash(location.hash.substring(1));
+  update(settings);
+
+  window.addEventListener("hashchange", () => {
+      settings = parseHash(location.hash.substring(1));
+      update(settings);
+  }, false);
+
+  // Assumes the hash string is made up of only one level json array of strings or numbers
+  function parseHash(s) {
+    try {
+      return JSON.parse(s);
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function update(arr) {
+    var container = $('#content');
+    content.innerHTML = '';
+    for (let i = 0; i < arr.length || 0; i++) {
+      var elem = document.createElement('li');
+      elem.textContent = arr[i];
+      content.appendChild(elem);
+    }
+  }
+
+})((s) => document.querySelector(s), (s) => [].slice.call(document.querySelectorAll(s)));
+</script>
+
+</body>
+</html>
