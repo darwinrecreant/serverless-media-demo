@@ -33,11 +33,11 @@ My dynamic content:
 
   function update(arr) {
     var container = $('#content');
-    content.innerHTML = '';
+    container.innerHTML = '';
     for (let i = 0; i < arr.length || 0; i++) {
       var elem = document.createElement('li');
       elem.textContent = arr[i];
-      content.appendChild(elem);
+      container.appendChild(elem);
     }
   }
 
